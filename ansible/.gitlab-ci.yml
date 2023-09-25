@@ -1,0 +1,23 @@
+stages:
+  - config
+
+variables:
+  HOSTS:
+    description: "указать список хостов, по умолчанию all"
+    value: "all"
+
+ansible-applying:
+  stage: config
+  image: cytopia/ansible:latest
+  before_script:
+    - cd ansible
+    - ansible --version
+    - mkdir secret
+    - echo "$SSH_PRIVATE_KEY" > secret/ansible.key
+    - chmod 400 secret/ansible.key
+    - chmod 400 ../ansible
+  script:
+    # заполнить переменными из гитлаба group_vars/vm-momo.yml
+    - echo "${ANSIBLE_VM_MOMO_GROUP_VARS}" > group_vars/vm-momo.yml
+    - ansible-playbook --inventory inventory --private-key secret/ansible.key --limit ${HOSTS} playbook.yaml
+    - rm -rf secret/ansible.key

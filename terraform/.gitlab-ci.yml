@@ -1,0 +1,26 @@
+stages:
+  - terraform
+
+terraform-applying:
+  stage: terraform
+  image: registry.gitlab.com/gitlab-org/terraform-images/stable:latest
+  before_script:
+    - > 
+      cat > ~/.terraformrc <<EOF
+        provider_installation {
+          network_mirror {
+            url = "https://terraform-mirror.yandexcloud.net/"
+            include = ["registry.terraform.io/*/*"]
+          }
+          direct {
+            exclude = ["registry.terraform.io/*/*"]
+          }
+        }
+      EOF
+    - echo "some script"
+  script:
+    - cd terraform
+    - echo "${TERRAFORM_TFVARS}" > terraform.tfvars
+    - terraform init -backend-config="access_key=$TERRAFORM_ACCESS_KEY" -backend-config="secret_key=$TERRAFORM_SECRET_KEY"
+    - terraform validate
+    - terraform apply -auto-approve

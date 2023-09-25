@@ -1,0 +1,5 @@
+---
+- name: Плей подготовления инфраструктуры для momo store
+  hosts: vm-momo
+  roles:
+    - docker-compose-install

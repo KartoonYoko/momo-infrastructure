@@ -1,0 +1,4 @@
+backend:
+  image: gitlab.praktikum-services.ru:5050/std-016-032/momo-store/momo-backend
+  replicas: 1
+  dockerconfigjson: ewogICAgICAgICJhdXRocyI6IHsKICAgICAgICAgICAgICAgICJnaXRsYWIucHJha3Rpa3VtLXNlcnZpY2VzLnJ1OjUwNTAiOiB7CiAgICAgICAgICAgICAgICAgICAgICAgICJhdXRoIjogImMzUmtMVEF4Tmkwd016STZUM0V6VWpFMU5XZz0iCiAgICAgICAgICAgICAgICB9CiAgICAgICAgfQp9
