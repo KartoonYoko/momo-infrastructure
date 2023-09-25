@@ -20,7 +20,9 @@
   user:
     name: "{{DOCKER_USER}}"
     create_home: yes
-    shell: /sbin/nologin
+    shell: /bin/bash
+    groups: docker
+    append: true
 
 - name: Add publick key for docker user
   ansible.posix.authorized_key:
