@@ -1,0 +1,24 @@
+stages:
+  - triggers
+
+trigger_ansible:
+  stage: triggers
+  trigger:
+    include: 
+      - "ansible/.gitlab-ci.yml"
+    strategy: depend
+  rules:
+    - if: '$CI_PIPELINE_SOURCE != "merge_request_event"'
+      changes:
+        - ansible/**/*
+
+trigger_terraform:
+  stage: triggers
+  trigger:
+    include: 
+      - "terraform/.gitlab-ci.yml"
+    strategy: depend
+  rules:
+    - if: '$CI_PIPELINE_SOURCE != "merge_request_event"'
+      changes:
+        - terraform/**/*

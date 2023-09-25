@@ -1,0 +1,28 @@
+---
+# tasks file for docker-compose-install
+- name: Add Docker GPG apt Key
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
+- name: Add Docker Repository
+  apt_repository:
+    repo: deb https://download.docker.com/linux/ubuntu focal stable
+    state: present
+
+- name: Update apt and install docker-ce
+  apt:
+    name: docker-ce
+    state: latest
+    update_cache: true
+
+- name: Create docker user
+  user:
+    name: "{{DOCKER_USER}}"
+    create_home: yes
+    shell: /sbin/nologin
+
+- name: Add publick key for docker user
+  ansible.posix.authorized_key:
+    user: "{{DOCKER_USER}}"
+    key: "{{DOCKER_USER_SSH_PUBLICK_KEY}}"

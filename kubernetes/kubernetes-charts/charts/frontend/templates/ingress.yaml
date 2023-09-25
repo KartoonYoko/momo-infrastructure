@@ -1,0 +1,22 @@
+# ---
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: frontend
+# spec:
+#   # В кластере может быть несколько Ingress Controllers, мы используем NGINX
+#   ingressClassName: "nginx"
+#   tls:
+#     - hosts:
+#       - "{{ .Values.frontend.fqdn }}"
+#   rules:
+#     - host: "{{ .Values.frontend.fqdn }}"
+#       http:
+#         paths:
+#         - path: /
+#           pathType: Prefix
+#           backend:
+#             service:
+#               name: frontend
+#               port:
+#                 number: 8080

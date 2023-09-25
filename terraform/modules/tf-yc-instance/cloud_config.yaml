@@ -1,0 +1,9 @@
+#cloud-config
+ssh_pwauth: no
+users:
+  - name: ansible
+    groups: sudo
+    shell: /bin/bash
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    ssh_authorized_keys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDiEsKKtLorek9bpvUEjZaXfZ6TUV/UfRUHxj4KJUdXSUGZ5kwaZZVgeADtaCdu9Tkr+uNpiAc38Ri2Ihrtx2g6s0JQhyy2F1lAM51ktQ+tXfgZ1M5Sp+LrGrCa/etW4lY6O50TMDl2jE7yDeDao/DjHWKqQ9jttnwqLLiqehl9jkZlAMjBz583HKNE+R9fHhnKC055QQhjGudsDVdkUzsB57dbxRqXzOhIxsBhXfuVP+QOJlqDIgrcnzktz1MyWVvDa6JH0Akg488T0kCd/XwL+YIkilnVowpvCQonqT8ayUn65zfBskof7lydYtq0U1dz56Ecxp1/yZ/cFb8xl4Ykfa+TgexdvW4nATltgLOe/g2h5OvkVxVUd78Xy3s269Zx3Vek23/3M6AZpFwnzgEfTsy1arcvqriwiGLn9YNgx4bossOx3blQIzeDNCZMa1Hvdz4T9A33anYewXiywNZ61o5otF3MS8CqCPXlbdyf2t4inCCCwsbWTqpEmvYXI91KXLisb/CSbFBnyx7AOEHFFr1Cbb+0pBP3di5ridpFzy+lE5X4N7u+oJlN3crRIeiCag5LWgN2GqLtM0PqCxl5Mxk5ZzDG32kQNihlt+H7r6YNYzsc2k+VonlWLnphzNvqLstcEhaDL1tR0DoY/cAjCHXGUb1qXaB1lCn3aP4Naw== crash@LAPTOP-R7269OSL
