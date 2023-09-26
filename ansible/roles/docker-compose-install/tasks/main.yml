@@ -28,3 +28,16 @@
   ansible.posix.authorized_key:
     user: "{{DOCKER_USER}}"
     key: "{{DOCKER_USER_SSH_PUBLICK_KEY}}"
+
+- name: Log into docker registry
+  docker_login:
+    config_path: "/home/{{DOCKER_USER}}/.docker/config.json"
+    registry_url: "{{DOCKER_LOGIN_REGISTRY_URL}}"
+    username: "{{DOCKER_LOGIN_USER}}"
+    password: "{{DOCKER_LOGIN_PASSWD}}"
+
+- name: Change permissions of docker config file
+  ansible.builtin.file:
+    path: "/home/{{DOCKER_USER}}/.docker/config.json"
+    owner: "{{DOCKER_USER}}"
+    group: "{{DOCKER_USER}}"
