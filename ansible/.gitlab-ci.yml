@@ -18,6 +18,6 @@ ansible-applying:
     - chmod 400 ../ansible
   script:
     # заполнить переменными из гитлаба group_vars/vm-momo.yml
-    - echo "${ANSIBLE_VM_MOMO_GROUP_VARS}" > group_vars/vm-momo.yml
-    - ansible-playbook --inventory inventory --private-key secret/ansible.key --limit ${HOSTS} playbook.yaml
+    - echo "${ANSIBLE_PASSWORD}" > .vault
+    - ansible-playbook --inventory inventory --private-key secret/ansible.key --vault-password-file .vault --limit ${HOSTS} playbook.yaml
     - rm -rf secret/ansible.key
